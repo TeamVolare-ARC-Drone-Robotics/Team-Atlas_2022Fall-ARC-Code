@@ -5,3 +5,8 @@ drone = Tello()
 #Start Code
 drone.takeoff()
 drone.streamon()
+
+drone.flip_forward()
+
+drone.streamoff()
+drone.land()
