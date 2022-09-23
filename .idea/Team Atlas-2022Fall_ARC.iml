@@ -5,7 +5,11 @@
       <sourceFolder url="file://$MODULE_DIR$/DJITelloPy" isTestSource="false" />
       <excludeFolder url="file://$MODULE_DIR$/venv" />
     </content>
+<<<<<<< HEAD
     <orderEntry type="jdk" jdkName="Python 3.9" jdkType="Python SDK" />
+=======
+    <orderEntry type="jdk" jdkName="Python 3.10" jdkType="Python SDK" />
+>>>>>>> 832e739565c3cec43d235088211eb796232a818a
     <orderEntry type="sourceFolder" forTests="false" />
   </component>
 </module>
