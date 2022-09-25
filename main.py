@@ -9,10 +9,11 @@ drone.connect()
 drone.takeoff()
 drone.streamon()
 
-drone.flip_forward()
+#Go To the Ballons
 
 drone.streamoff()
 drone.land()
-
 #End Code
+
+
 
