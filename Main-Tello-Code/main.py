@@ -14,6 +14,3 @@ drone.streamon()
 drone.streamoff()
 drone.land()
 #End Code
-
-
-
