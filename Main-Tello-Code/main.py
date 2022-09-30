@@ -19,7 +19,27 @@ def traverseBallons(popArray):
     #detect Marker and if maker is the needed maker then call pop
     pass
 
+    levels = 0
+    i = 0
+    while i < 7:
+    	drone.move_right(20)
+    	for j in range(len(popArray)):
+    		if(popArray[j] == #detected Tag number):
+    			popBallons()
+    			i += 1
+    		else:
+    			i+= i
 
+    		if(i == 6):
+    			drone.move_down(20)
+    			i = 0
+    			levels += 1
+
+    		if(levels == 3):
+    			land()
+
+def land():
+	drone.land()
 
 
 # Connect before anything
