@@ -1,9 +1,13 @@
 # Import Module
 from djitellopy import Tello
 import cv2
-import GoTo_Ballons
 
 drone = Tello()
+
+#Start Writing Functions
+def popBallons():
+    drone.move_forward(20)
+
 
 # Connect before anything
 drone.connect()
