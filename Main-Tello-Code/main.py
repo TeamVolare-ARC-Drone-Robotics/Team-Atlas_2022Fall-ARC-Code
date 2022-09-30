@@ -41,6 +41,15 @@ import argparse
 import imutils
 import cv2
 import sys
+from djitellopy import Tello
+
+drone = Tello()
+# Connect before anything
+drone.connect()
+# Start Code
+drone.takeoff()
+drone.streamon()
+
 
 # construct the argument parser and parse the arguments
 ap = argparse.ArgumentParser()
