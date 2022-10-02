@@ -36,10 +36,7 @@ def traverseBallons(popArray):
     			levels += 1
 
     		if(levels == 3):
-    			land()
-
-def land():
-	drone.land()
+    			i = 7
 
 
 # Connect before anything
@@ -48,7 +45,9 @@ drone.connect()
 drone.takeoff()
 drone.streamon()
 
-# Go To the Ballons
+# Start Code
+popArray = [#Manually Feed Numbers#]
+traverseBallons(popArray)
 
 # End Code
 drone.streamoff()
