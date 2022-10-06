@@ -10,29 +10,6 @@ import sys
 
 drone = Tello()
 
-# Pre-initalize arrays, both faster to execute and easier to visualise
-
-# Tag array
-tag_list = [
-			[0,0,0,0,0,0]
-			[0,0,0,0,0,0]
-			[0,0,0,0,0,0]
-			]
-
-# Pop array
-pop_list = [
-			[0,0,0,0,0,0]
-			[0,0,0,0,0,0]
-			[0,0,0,0,0,0]
-			]
-
-# Movement array
-mov_list = [
-			[0,0,0,0,0,0]
-			[0,0,0,0,0,0]
-			[0,0,0,0,0,0]
-			]
-
 #Start Writing Functions
 def popBalloon():
     drone.move_forward(20)
@@ -62,6 +39,53 @@ def traverseBalloons(popArray):
     			i = 7
 
 
+    # Connect before anything
+    def initialize():
+        drone.connect()
+        drone.streamon()
+
+    # Start Code
+    initialize()
+    drone.takeoff()
+
+    # Start Code
+    popArray = [#Manually Feed Numbers#]
+    traverseBalloons(popArray)
+
+    # End Code
+    drone.streamoff()
+    drone.land()
+"""
+"""
+---------------------------------------------------------------------------------------------------------------------
+#Try with Arrays
+# Pre-initialize arrays, both faster to execute and easier to visualise
+
+# Tag array
+tag_list = [
+			[0,0,0,0,0,0]
+			[0,0,0,0,0,0]
+			[0,0,0,0,0,0]
+			]
+
+# Pop array
+pop_list = [
+			[0,0,0,0,0,0]
+			[0,0,0,0,0,0]
+			[0,0,0,0,0,0]
+			]
+
+# Movement array
+move_list = [
+			[0,0,0,0,0,0]
+			[0,0,0,0,0,0]
+			[0,0,0,0,0,0]
+			]
+
+#Add numbers to the tag list
+def findTags():
+    #Find the tags and append them to the array
+
 # Connect before anything
 def initalize():
 	drone.connect()
@@ -71,6 +95,7 @@ def initalize():
 drone.takeoff()
 
 # Start Code
+
 popArray = [#Manually Feed Numbers#]
 traverseBalloons(popArray)
 
@@ -79,6 +104,8 @@ drone.streamoff()
 drone.land()
 
 """
+
+
 # Run the test to see ArUCo Tag numbers
 # import the necessary packages
 import argparse
