@@ -1,7 +1,7 @@
 # Import Module
 from djitellopy import Tello
 import cv2
-import keyboard
+# import keyboard
 
 drone = Tello()
 
@@ -60,7 +60,13 @@ while land == False:
     elif key == 'r':
         drone.move_up(30)
     elif key == 'f':
-        drone.move_down(30)
+        # This section is to attempt to prevent the massive errors and stalls that happen when trying to
+        # make the drone go down when it is close to the ground.
+        try:
+            drone.move_down(30)
+        except:
+            print("An error has been caught- perhaps the drone is too low to the ground?" +
+                  f"\nIf so, make sure to use the 'land' command to get it to touch down.")
 
 
 # End Code
