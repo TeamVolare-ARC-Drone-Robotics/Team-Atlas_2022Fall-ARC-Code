@@ -28,7 +28,7 @@ def droneInformation():
     print("Flight Time: ", drone.get_flight_time())
 
 land = False
-while land == False:
+while land == True:
 
     print(droneInformation())
 
