@@ -1,7 +1,11 @@
-from djitellopy import Tello
-import cv2
-import math
+# import the necessary packages
+from imutils.video import VideoStream
+import argparse
+import imutils
 import time
+import cv2
+import sys
+from djitellopy import Tello
 
 drone = Tello()
 
