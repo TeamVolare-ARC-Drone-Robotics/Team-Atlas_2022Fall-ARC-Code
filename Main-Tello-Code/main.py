@@ -114,6 +114,10 @@ while True:
 		drone.rotate_clockwise(20)
 	elif key == ord('r'):
 		drone.rotate_counter_clockwise(20)
+	elif key == ord('f'):
+		drone.move_forward(30)
+	elif key == ord('c'):
+		drone.move_back(20)
 
 # do a bit of cleanup
 cv2.destroyAllWindows()
