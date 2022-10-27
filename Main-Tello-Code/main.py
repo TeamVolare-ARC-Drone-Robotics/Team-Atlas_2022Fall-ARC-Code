@@ -1,19 +1,15 @@
 # Initialize the arrays
 taglist = []
 
-tagarray=[
+tagarray = [
      2, 9, 14, 18, 6, 11,
      9, 18, 2, 11, 6, 14,
      14, 11, 18, 9, 2, 6
 ]
 
-poparray=[
-     0, 0, 0, 0, 0, 0,
-     0, 0, 0, 0, 0, 0,
-     0, 0, 0, 0, 0, 0
-]
+poparray = []
 
-movearray=[
+movearray = [
      0, 0, 0, 0, 0, 0,
      0, 0, 0, 0, 0, 0,
      0, 0, 0, 0, 0, 0
@@ -25,12 +21,17 @@ def detect_tags():
 
 
 def decide_pops(tags):
-    i = 0
-    for num in len(tagarray):
-        if tagarray(i):
-            poparray[i] = 1
-        else:
-            poparray[i] = 0
+    global tagarray
+    global poparray
+    poparray = [
+        1 if i in tags else 0 for i in tagarray
+    ]
+    # i = 0
+    # for num in len(tagarray):
+    #     if tagarray(i):
+    #         poparray[i] = 1
+    #     else:
+    #         poparray[i] = 0
 
 
 def movedecider(type):
