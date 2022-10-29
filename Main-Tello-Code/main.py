@@ -2,25 +2,29 @@
 import argparse
 import time
 import cv2
+import numpy as np
 from djitellopy import Tello
+
 drone = Tello()
 
-# Initialize the arrays
-targetTags = []
-
 #TODO: INVERT THE 2ND ROW. The 2nd collumn should be inverted to allow for the drone to traverse the balloons in the 2nd level
-
 
 # Initialize the arrays
 targetTags = [2, 14, 6]
 
-tagArray=[
+tagArray = [
      2, 9, 14, 18, 6, 11,
      9, 18, 2, 11, 6, 14,
      14, 11, 18, 9, 2, 6
 ]
 
-popArray = [1 if i in targetTags else 0 for i in tagArray]
+global popArray
+
+#Pop Array has been converted to a numpy array to allow it to turn into a 2d array
+popArray = np.array(popArray)
+popArray = popArray.reshape(3, 6)
+#The number has been turned back into a normal python list to allow for normal syntax
+popArray = popArray.tolist()
 
 # moveArray = [
 #     [0, 0, 0, 0, 0, 0],
@@ -143,13 +147,22 @@ def detect_tags():
     cv2.destroyAllWindows()
 
 
-def decide_pops():
-    for i in range(len(tagArray)):
-        for j in range(len(tagArray[i])):
-            if tagArray[i][j] in targetTags:
-                popArray[i][j] = 1
-    return popArray
+def decide_pops(tagArray):
+    popArray = [1 if i in targetTags else 0 for i in tagArray]
 
+    # Pop Array has been converted to a numpy array to allow it to turn into a 2d array
+    popArray = np.array(popArray)
+    popArray = popArray.reshape(3, 6)
+    # The number has been turned back into a normal python list to allow for normal syntax
+    popArray = popArray.tolist()
+
+    # Tag Array has been converted to a numpy array to allow it to turn into a 2d array
+    tagArray = np.array(tagArray)
+    tagArray = tagArray.reshape(3, 6)
+    # The number has been turned back into a normal python list to allow for normal syntax
+    tagArray = tagArray.tolist()
+    # We inverted the 2nd row to allow for the drone to move normally
+    tagArray[1].reverse()
 
 def movedrone():
     for i in range(len(popArray)):
@@ -178,7 +191,7 @@ drone.connect()
 drone.streamon()
 drone.takeoff()
 
-decide_pops()
+decide_pops(tagArray)
 goToFirstBallon()
 movedrone()
 
