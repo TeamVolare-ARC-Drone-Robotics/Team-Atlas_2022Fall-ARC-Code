@@ -22,11 +22,43 @@ tagArray=[
 
 popArray = [1 if i in targetTags else 0 for i in tagArray]
 
-# moveArray = [
-#     [0, 0, 0, 0, 0, 0],
-#     [0, 0, 0, 0, 0, 0],
-#     [0, 0, 0, 0, 0, 0]
-# ]
+moveArray = [
+    "", "", "", "", "", "",
+    "", "", "", "", "", "",
+    "", "", "", "", "", ""
+]
+
+
+def find_num_next_1(z):
+    j = z
+    c = 0
+    x = 0
+    if z == 17:
+        return 0
+    while x != 1:
+        j += 1
+        c += 1
+        if popArray[j] or (j+1)/6 == 1 or (j+1)/6 == 2:
+            x = 1
+    return c
+
+
+def decide_movements():
+    i = 0
+    r = 0
+    while i < 18:
+        moveArray[i] = (
+            ("P" if popArray[i] else "N")
+            + ("R" if r == 0 or r == 2 else "L")
+            + str(find_num_next_1(i))
+        )
+        if (i+1)/6 == 1 or (i+1)/6 == 2:
+            moveArray[i] = (("P" if popArray[i] else "N") + "D1")
+            r += 1
+        if i == 17:
+            moveArray[i] = (("P" if popArray[i] else "N") + "E0")
+        i += 1
+
 
 
 def detect_tags():
@@ -174,12 +206,15 @@ def goToFirstBallon():
     pass
 
 
-drone.connect()
-drone.streamon()
-drone.takeoff()
+#drone.connect()
+#drone.streamon()
+#drone.takeoff()
 
-decide_pops()
-goToFirstBallon()
-movedrone()
+# decide_pops()
+#goToFirstBallon()
+#movedrone()
 
-drone.land()
+#drone.land()
+print(popArray)
+decide_movements()
+print(moveArray)
