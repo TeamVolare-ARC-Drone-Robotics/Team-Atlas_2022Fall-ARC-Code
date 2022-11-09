@@ -44,6 +44,7 @@ def find_num_next_1(z):
 
 
 def decide_movements():
+    global moveArray
     i = 0
     r = 0
     while i < 18:
@@ -52,12 +53,22 @@ def decide_movements():
             + ("R" if r == 0 or r == 2 else "L")
             + str(find_num_next_1(i))
         )
+        # detect unnecessary instructions and remove them
+        if i > 0:  # added because trying to access the array location before i=0 results in an index error
+            if (moveArray[i][0] == "N")\
+                    and ("D" not in moveArray[i-1]):
+                    # Somehow, the code works without the thing below- but if it ain't broke, don't fix it!
+                    # and (int(moveArray[i-1][2]) != int(moveArray[i][2])):
+                moveArray[i] = ""
         if (i+1)/6 == 1 or (i+1)/6 == 2:
             moveArray[i] = (("P" if popArray[i] else "N") + "D1")
             r += 1
         if i == 17:
             moveArray[i] = (("P" if popArray[i] else "N") + "E0")
         i += 1
+
+    #  Cleanup of empty strings
+    moveArray = [i for i in moveArray if i]
 
 
 
