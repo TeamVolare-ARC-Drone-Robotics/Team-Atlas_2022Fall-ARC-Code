@@ -9,6 +9,7 @@ from djitellopy import Tello
 drone = Tello()
 
 # Initialize the arrays
+global targetTags
 try:
     time.sleep(0.25)
     print("IMPORTANT: PlEASE MAKE SURE THE INPUT FILE HAS A NEWLINE AT THE END OF FILE!")
@@ -41,14 +42,15 @@ def find_num_next_1(z):
     j = z
     c = 0
     x = 0
-    if z >= 17 or z <= -1:
+    print("z: " + str(z))
+    if z == 17 or z >= 17:
         return 0
     while x != 1:
         j += 1
         c += 1
-        print(j)
+        print("j: " + str(j))
         time.sleep(0.01)
-        if popArray[j] or z == 11 or z == 16:
+        if popArray[j] or z == 11 or z == 16 or j == 5 or j == 11:
             x = 1
     return c
 
@@ -78,6 +80,7 @@ def decide_movements():
 
     #  Cleanup of empty strings
     moveArray = [i for i in moveArray if i]
+    print(moveArray)
 
 
 
@@ -194,11 +197,11 @@ def movedrone():
             movement = moveArray[i]
             movement = str(movement)
             balloons = int(movement[2])
-            moveInCM = balloons * 30
+            moveInCM = balloons * 25
             pop = 'not pop'
 
             if movement[0] == 'P':
-                #popBalloon()
+                popBalloon()
                 pop = 'pop'
             elif movement[0] == 'N':
                 pass
@@ -218,13 +221,14 @@ def movedrone():
 
 
 def popBalloon():
-    drone.move_forward(30)
-    drone.move_back(30)
+    print("in pop")
+    drone.move_forward(65)
+    drone.move_back(68)
 
 def goToFirstBalloon():
     drone.move_up(100)
-    drone.move_left(90)
-    drone.move_forward(255)
+    drone.move_left(80)
+    drone.move_forward(210)
 
 
 """
@@ -234,10 +238,11 @@ def goToFirstBalloon():
 # # Connect to the Drone
 drone.connect()
 #
+print("Battery: ", drone.get_battery())
 # #Decide the movement the drone needs to take
 decide_movements()
 #
-# #The drone shall takeoff
+# #The drone shall take off
 drone.takeoff()
 #
 # #go to the first balloon
